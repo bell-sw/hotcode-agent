@@ -25,7 +25,7 @@ public class ListUtilsTest {
     void diff() {
         var list1 = List.of(4, 3, 3, 2, 2, 2, 1);
         var list2 = List.of(1, 1, 2, 2);
-        var expected = List.of(4, 3);
+        var expected = List.of(4, 3, 3);
         var actual = ListUtils.diff(list1, list2);
         assertEquals(expected, actual);
     }

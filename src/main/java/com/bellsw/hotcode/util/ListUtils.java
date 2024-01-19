@@ -16,22 +16,27 @@
 package com.bellsw.hotcode.util;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.List;
 
 public final class ListUtils {
 
     /**
-     * Unique values of list2 are subtracted from unique values of list1, the order is preserved.
+     * Values of list2 are subtracted from values of list1, the order is preserved.
      * 
      * @param list1
      * @param list2
      * @return New modifiable list
      */
     public static <E> List<E> diff(List<E> list1, List<E> list2) {
-        var diff = new LinkedHashSet<E>(list1);
-        diff.removeAll(list2);
-        return List.copyOf(diff);
+        var toRemove = new HashSet<E>(list2);
+        var result = new ArrayList<E>(list1.size());
+        for (E e : list1) {
+            if (!toRemove.contains(e)) {
+                result.add(e);
+            }
+        }
+        return result;
     }
     
     public static <E> List<E> limit(List<E> list, int maxSize) {
